@@ -37,7 +37,7 @@ public class StreamExample {
         method8();
         method9();
         method10();
-
+        method11();
 
     }
 
@@ -199,6 +199,14 @@ public class StreamExample {
         System.out.println("The product is : " + product);
     }
 
+    public static void method11() {
+        Map<Object, List<Customer>> list=getCustomerList().stream().collect(Collectors.groupingBy(s->s.getAge()));
+        printValue(list);
+
+        Map<Object, Long> list1=getCustomerList().stream().collect(Collectors.groupingBy(s->s.getName(),Collectors.counting()));
+        printValue(list1);
+    }
+
     public static List<Integer> getIntegerList() {
         List<Integer> input = Arrays.asList(2, 4, 6, 8, 10, 12, 1, 3, 5, 7, 7, 3, 6);
         System.out.println("input: ");
@@ -218,6 +226,8 @@ public class StreamExample {
         List<Customer> createdInput = Arrays.asList(new Customer("Amanda", 20, "Delhi"), new Customer("Bhuvan", 19, "Delhi"), new Customer("Dinesh", 20, "Noida"), new Customer("Gaurav", 23, "Noida"));
         System.out.println("input: ");
         System.out.println(createdInput);
+
+        Stream<Customer> count=createdInput.stream().distinct();
         return createdInput;
     }
 
